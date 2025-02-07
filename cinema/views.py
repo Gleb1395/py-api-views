@@ -108,13 +108,6 @@ class ActorList(
         serializer = self.get_serializer_class()(actors, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request) -> Response:
-        serializer = ActorSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class ActorDetail(
     generics.GenericAPIView,
